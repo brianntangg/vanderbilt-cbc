@@ -40,7 +40,7 @@ export const site: Site = {
   board: {
     formUrl: "https://airtable.com/appGwA9kZRLa2WTNA/pagjinjDnBhHTSF45/form",
     embedUrl: "https://airtable.com/embed/appGwA9kZRLa2WTNA/pagjinjDnBhHTSF45/form",
-    deadline: "2026-11-16",
+    deadline: "2026-11-13",
     decisionDate: "2026-11-23",
     term: "2026–27",
     forceOpen: undefined,
