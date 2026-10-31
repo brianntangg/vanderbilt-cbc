@@ -9,8 +9,8 @@ export type TeamMember = {
 };
 
 export const team: TeamMember[] = [
-  { name: "Brian Tang", role: "Ambassador", linkedin: "https://www.linkedin.com/in/brian-tang05/" },
-  { name: "Sophie Lin", role: "Ambassador", linkedin: "https://www.linkedin.com/in/sophie-lin-csds/" },
+  { name: "Brian Tang", role: "Ambassador", photo: "/team/brian-tang.jpg", linkedin: "https://www.linkedin.com/in/brian-tang05/" },
+  { name: "Sophie Lin", role: "Ambassador", photo: "/team/sophie-lin.jpg", linkedin: "https://www.linkedin.com/in/sophie-lin-csds/" },
   // {
   //   name: "First Last",
   //   role: "VP of Engineering",
