@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-/* Design tokens. Components use the Tailwind names below, never raw hex values. */
 :root {
   --bg: #141413;
   --surface: #1c1b19;

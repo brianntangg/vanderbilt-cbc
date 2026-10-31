@@ -1,4 +1,3 @@
-// Grouped links on /links.
 import { site } from "./site";
 
 export type LinkItem =

@@ -1,11 +1,7 @@
-// Hackathon details. Leave a field unset (or a list empty) and its section stays hidden.
-// Once `date` is set, the page switches from "Coming soon" to the full details view.
-
 export type Hackathon = {
   term: string;
   /** ISO "YYYY-MM-DD". */
   date?: string;
-  /** e.g. "Saturday 9:00 AM – Sunday 5:00 PM". */
   time?: string;
   venue?: string;
   registrationUrl?: string;

@@ -1,18 +1,14 @@
-// Club events. Upcoming vs past is decided automatically from `date` (Central Time).
-// Add `slidesUrl` after an event and it appears on /slides.
-
 export type EventType = "meeting" | "workshop" | "campus-session" | "hackathon" | "social";
 
 export type ClubEvent = {
-  /** Unique slug, e.g. "2026-11-18-claude-code-workshop". */
+  /** Must be unique. */
   id: string;
   title: string;
   type: EventType;
   /** ISO "YYYY-MM-DD", or "TBD". */
   date: string;
-  /** e.g. "Spring 2027". Shown when date is "TBD". */
+  /** Shown when date is "TBD". */
   term?: string;
-  /** e.g. "6:00–7:30 PM". */
   time?: string;
   location?: string;
   description: string;

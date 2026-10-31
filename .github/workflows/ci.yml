@@ -1,5 +1,3 @@
-# Runs lint, type check, and a production build on every push and pull request.
-# A red X on a commit means something is broken; click it to see which step failed.
 name: CI
 
 on:

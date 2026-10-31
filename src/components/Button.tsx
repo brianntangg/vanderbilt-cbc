@@ -12,7 +12,6 @@ const variants = {
   secondary: "border border-line text-ink hover:border-muted",
 };
 
-/** A link styled as a button. External URLs open in a new tab. */
 export function Button({ href, children, variant = "primary", className = "" }: ButtonProps) {
   const classes = `inline-flex min-h-11 items-center justify-center gap-2 rounded-lg px-5 text-[15px] font-semibold transition-colors ${variants[variant]} ${className}`;
   if (isExternal(href)) {

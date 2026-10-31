@@ -13,7 +13,6 @@ export const metadata = pageMetadata({
 });
 
 export default function SlidesPage() {
-  // Derived from events.ts: any past event with a slidesUrl, newest first.
   const decks = pastEvents(events).filter((event) => event.slidesUrl);
 
   return (

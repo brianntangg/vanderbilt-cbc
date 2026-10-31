@@ -5,13 +5,11 @@ type SectionProps = {
   eyebrow?: string;
   title?: string;
   intro?: React.ReactNode;
-  /** Use "h1" for the first section on a page. */
   as?: "h1" | "h2";
   children?: React.ReactNode;
   className?: string;
 };
 
-/** Page container plus optional eyebrow, heading, and intro. */
 export function Section({ id, eyebrow, title, intro, as = "h2", children, className = "" }: SectionProps) {
   const Heading = as;
   return (

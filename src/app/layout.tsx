@@ -8,8 +8,7 @@ import { site } from "@/content/site";
 import { isBoardApplicationOpen } from "@/lib/board";
 import "./globals.css";
 
-// Pages are static but re-render hourly, so date-based content (upcoming events,
-// the board banner) updates on its own without a new deploy.
+// Re-render hourly so date-based content (events, board banner) updates without a deploy.
 export const revalidate = 3600;
 
 const newsreader = Newsreader({ subsets: ["latin"], variable: "--font-newsreader", weight: ["400", "500"] });

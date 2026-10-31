@@ -1,5 +1,3 @@
-// Board roles. Set `open: false` to close a role; order here is the order on /join.
-
 export type Role = {
   title: string;
   summary: string;

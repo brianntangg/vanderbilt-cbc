@@ -3,7 +3,6 @@ import { site } from "@/content/site";
 import { openPositionsLabel } from "@/lib/board";
 import { formatDate } from "@/lib/dates";
 
-/** Site-wide board recruiting banner. The layout only renders it while applications are open. */
 export function Banner() {
   return (
     <Link

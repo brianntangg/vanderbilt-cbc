@@ -1,7 +1,6 @@
 import { site } from "@/content/site";
 import { ExternalLinkIcon } from "./icons";
 
-/** The live Airtable board application form. */
 export function AirtableEmbed() {
   return (
     <div>

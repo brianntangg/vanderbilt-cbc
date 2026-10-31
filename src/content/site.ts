@@ -1,13 +1,10 @@
-// Club-wide settings. Edit values here; components read from this file.
-
-/** Add a platform here (and to `socials` below) to show it in the footer and on /links. */
 export type SocialPlatform = "instagram" | "linkedin" | "discord" | "github" | "x" | "youtube";
 
 export type Site = {
   name: string;
   shortName: string;
   tagline: string;
-  /** Public site URL, used for metadata and Open Graph. Change this when switching to a custom domain. */
+  /** Change when switching to a custom domain. */
   url: string;
   contactEmail: string;
   memberSignupUrl: string;
@@ -19,7 +16,6 @@ export type Site = {
     deadline: string;
     /** "YYYY-MM-DD". */
     decisionDate: string;
-    /** "2026–27". Shown in the eyebrow and closed message. */
     term: string;
     /** true/false overrides the deadline; undefined follows it. */
     forceOpen: boolean | undefined;

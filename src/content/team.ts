@@ -1,11 +1,8 @@
-// Team members, shown on /team in this order.
-// Photos go in public/team/ and are referenced as "/team/filename.jpg".
-
 export type TeamMember = {
   name: string;
   role: string;
   bio?: string;
-  /** e.g. "/team/brian-tang.jpg". Initials are shown when unset. */
+  /** File in public/team/, e.g. "/team/first-last.jpg". */
   photo?: string;
   linkedin?: string;
   github?: string;

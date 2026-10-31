@@ -1,5 +1,3 @@
-# Opens weekly pull requests to keep dependencies up to date.
-# CI runs on each one; merge it if the checks pass.
 version: 2
 updates:
   - package-ecosystem: npm

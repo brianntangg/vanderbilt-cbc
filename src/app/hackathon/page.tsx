@@ -15,7 +15,6 @@ export const metadata = pageMetadata({
 export default function HackathonPage() {
   const { date, time, venue, registrationUrl, schedule, prizes, judgingCriteria, sponsors } = hackathon;
 
-  // Until a date is set, show the "coming soon" state.
   if (!date) {
     return (
       <Section

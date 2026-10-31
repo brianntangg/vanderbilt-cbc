@@ -15,7 +15,6 @@ const icons: Partial<Record<SocialPlatform, typeof InstagramIcon>> = {
   linkedin: LinkedInIcon,
 };
 
-/** Renders only the platforms set in site.socials. */
 export function SocialLinks() {
   const entries = Object.entries(site.socials) as [SocialPlatform, string | undefined][];
   return (
