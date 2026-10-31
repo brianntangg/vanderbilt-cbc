@@ -2,6 +2,8 @@
 
 Website for the Claude Builder Club at Vanderbilt, a student club in Anthropic's Claude Campus Program. Static Next.js + Tailwind, deployed on Vercel.
 
+Live: https://vanderbilt-cbc.vercel.app
+
 ## Run locally
 
 ```bash
@@ -32,14 +34,14 @@ All editable content lives in `src/content/`. You shouldn't need to touch compon
 **Board applications** (`src/content/roles.ts`, `src/content/site.ts` → `board`)
 - Close a role: set `open: false`. Add a role: copy an entry. The count, banner, and /join update automatically.
 - Change dates: edit `deadline` / `decisionDate` (`"YYYY-MM-DD"`). Applications close after the deadline day, Central Time.
-- Change the form: update `formUrl` and `embedUrl` (Airtable → Share form → Embed).
+- Change the form: update `formUrl` and `embedUrl` (Airtable → Share form → Embed). If you switch away from Airtable, also add the new domain to `frame-src` in `next.config.ts`, or the embed will be blocked.
 - Force open/closed: set `forceOpen: true` or `false`. Set it back to `undefined` to follow the deadline.
 - New year: update `term`, the dates, and set roles back to `open: true`.
 
 **Update hackathon details** (`src/content/hackathon.ts`)
 1. Fill in `date`, `time`, `venue`, and `registrationUrl`.
 2. Add items to `schedule`, `prizes`, `judgingCriteria`, and `sponsors`. Empty lists stay hidden.
-3. Until `date` is set, the page shows "Coming Spring 2027".
+3. Until `date` is set, the page shows "Coming" plus `term` (e.g. "Coming Spring 2027").
 
 **Add a social link** (`src/content/site.ts`)
 1. Add one line under `socials`, e.g. `discord: "https://discord.gg/..."`.
@@ -53,9 +55,13 @@ All editable content lives in `src/content/`. You shouldn't need to touch compon
 
 Pages are static but re-render hourly on Vercel, so events move to "Past" and the board banner disappears after the deadline without a redeploy.
 
-## Deploy
+## Deploy and checks
 
-Vercel imports the GitHub repo. Every push to `main` deploys automatically. Add a custom domain under Project → Settings → Domains.
+- Every push to `main` deploys to Vercel automatically. If the build fails, the previous version stays live.
+- GitHub Actions runs `npm run check` and `npm run build` on every push and pull request. A red X on a commit means something broke; click it to see which step.
+- Dependabot opens weekly pull requests to update dependencies. Merge them when the checks pass.
+- Visitor stats are in Vercel → Project → Analytics.
+- Custom domain: Vercel → Project → Settings → Domains.
 
 ## Maintainers
 
