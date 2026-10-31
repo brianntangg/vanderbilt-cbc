@@ -1,7 +1,7 @@
 import Image from "next/image";
 import type { TeamMember } from "@/content/team";
 import { Card } from "./Card";
-import { ExternalLinkIcon } from "./icons";
+import { GitHubIcon, LinkedInIcon } from "./icons";
 
 function initials(name: string): string {
   return name
@@ -35,26 +35,29 @@ export function TeamCard({ member }: { member: TeamMember }) {
       <p className="mt-1 font-mono text-[13px] uppercase tracking-[0.06em] text-accent">{member.role}</p>
       {member.bio && <p className="mt-3 text-muted">{member.bio}</p>}
       {(member.linkedin || member.github) && (
-        <div className="mt-4 flex gap-4 text-sm font-medium">
-          {member.linkedin && <ProfileLink href={member.linkedin} label="LinkedIn" name={member.name} />}
-          {member.github && <ProfileLink href={member.github} label="GitHub" name={member.name} />}
+        <div className="mt-4 flex gap-2">
+          {member.linkedin && (
+            <ProfileLink href={member.linkedin} label={`${member.name} on LinkedIn`} icon={<LinkedInIcon />} />
+          )}
+          {member.github && (
+            <ProfileLink href={member.github} label={`${member.name} on GitHub`} icon={<GitHubIcon />} />
+          )}
         </div>
       )}
     </Card>
   );
 }
 
-function ProfileLink({ href, label, name }: { href: string; label: string; name: string }) {
+function ProfileLink({ href, label, icon }: { href: string; label: string; icon: React.ReactNode }) {
   return (
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex items-center gap-1.5 text-accent transition-colors hover:text-accent-hover"
+      className="inline-flex size-10 items-center justify-center rounded-lg border border-line text-muted transition-colors hover:border-muted hover:text-ink"
     >
-      {label}
-      <span className="sr-only"> for {name}</span>
-      <ExternalLinkIcon />
+      {icon}
+      <span className="sr-only">{label}</span>
     </a>
   );
 }
