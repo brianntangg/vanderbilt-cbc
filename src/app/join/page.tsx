@@ -14,8 +14,9 @@ export const metadata = pageMetadata({
 });
 
 export default function JoinPage() {
-  const roles = openRoles();
   const open = isBoardApplicationOpen();
+  // After the deadline, roles are treated as filled even if still marked open.
+  const roles = open ? openRoles() : [];
   const deadline = formatDate(site.board.deadline);
   const decisionDate = formatDate(site.board.decisionDate);
 
@@ -59,17 +60,15 @@ export default function JoinPage() {
             {roles.map((role) => (
               <RoleCard key={role.title} role={role} />
             ))}
-            {open && (
-              <div className="flex flex-col rounded-xl bg-ink p-6 text-bg">
-                <h3 className="text-[19px] font-semibold">Not sure which fits?</h3>
-                <p className="mt-2 text-bg/80">
-                  Check more than one role on the form. We&apos;ll talk through fit in your interview.
-                </p>
-                <a href="#apply" className="mt-4 font-semibold underline underline-offset-4 hover:no-underline">
-                  Go to the application
-                </a>
-              </div>
-            )}
+            <div className="flex flex-col rounded-xl bg-ink p-6 text-bg">
+              <h3 className="text-[19px] font-semibold">Not sure which fits?</h3>
+              <p className="mt-2 text-bg/80">
+                Check more than one role on the form. We&apos;ll talk through fit in your interview.
+              </p>
+              <a href="#apply" className="mt-4 font-semibold underline underline-offset-4 hover:no-underline">
+                Go to the application
+              </a>
+            </div>
           </div>
         ) : (
           <p className="mt-8 text-lg text-muted">All board positions are filled for this year.</p>
