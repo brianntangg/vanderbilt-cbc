@@ -25,9 +25,9 @@ export function Nav({ boardOpen }: { boardOpen: boolean }) {
       <nav aria-label="Main" className="mx-auto flex max-w-[1160px] items-center justify-between gap-6 px-6 py-4">
         <Link href="/" onClick={close} className="flex items-center gap-2.5">
           <Image src="/brand/claude-symbol.svg" alt="Claude logo" width={24} height={24} unoptimized />
-          <span className="font-semibold">Claude Builder Club</span>
-          <span className="rounded border border-line px-1.5 py-0.5 font-mono text-[11px] tracking-[0.08em] text-muted">
-            VANDY
+          <span className="whitespace-nowrap font-semibold">Claude Builder Club</span>
+          <span className="hidden rounded border border-line px-1.5 py-0.5 font-mono text-[11px] tracking-[0.08em] text-muted min-[420px]:inline">
+            VANDERBILT
           </span>
         </Link>
 
