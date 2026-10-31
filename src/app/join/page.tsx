@@ -60,12 +60,15 @@ export default function JoinPage() {
             {roles.map((role) => (
               <RoleCard key={role.title} role={role} />
             ))}
-            <div className="flex flex-col rounded-xl bg-ink p-6 text-bg">
+            <div className="flex flex-col rounded-xl border border-accent/40 bg-accent-soft p-6">
               <h3 className="text-[19px] font-semibold">Not sure which fits?</h3>
-              <p className="mt-2 text-bg/80">
+              <p className="mt-2 text-muted">
                 Check more than one role on the form. We&apos;ll talk through fit in your interview.
               </p>
-              <a href="#apply" className="mt-4 font-semibold underline underline-offset-4 hover:no-underline">
+              <a
+                href="#apply"
+                className="mt-4 font-semibold text-accent underline underline-offset-4 transition-colors hover:text-accent-hover"
+              >
                 Go to the application
               </a>
             </div>
