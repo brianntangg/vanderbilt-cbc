@@ -32,21 +32,21 @@ export const linkGroups: LinkGroup[] = [
   {
     title: "Learn Claude",
     items: [
-      { kind: "link", label: "Claude docs", href: "https://docs.claude.com" },
+      { kind: "link", label: "Claude Docs", href: "https://docs.claude.com" },
       {
         kind: "link",
-        label: "Prompt engineering guide",
+        label: "Prompt Engineering Guide",
         href: "https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/overview",
       },
       { kind: "link", label: "Anthropic Cookbook", href: "https://github.com/anthropics/anthropic-cookbook" },
-      { kind: "link", label: "claude.ai", href: "https://claude.ai" },
+      { kind: "link", label: "Claude.ai", href: "https://claude.ai" },
     ],
   },
   {
     title: "Build",
     items: [
       { kind: "link", label: "Anthropic Console", href: "https://console.anthropic.com" },
-      { kind: "link", label: "Claude Code docs", href: "https://docs.claude.com/en/docs/claude-code/overview" },
+      { kind: "link", label: "Claude Code Docs", href: "https://docs.claude.com/en/docs/claude-code/overview" },
     ],
   },
 ];
