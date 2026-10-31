@@ -1,4 +1,4 @@
-# vanderbilt-cbc
+# Claude Builder Club at Vanderbilt
 
 Website for the Claude Builder Club at Vanderbilt, a student club in Anthropic's Claude Campus Program. Static Next.js + Tailwind, deployed on Vercel.
 
