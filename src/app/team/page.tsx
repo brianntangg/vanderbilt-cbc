@@ -15,7 +15,7 @@ export default function TeamPage() {
       <Section
         as="h1"
         eyebrow="Team"
-        title="Meet the team"
+        title="Meet the Team"
         intro="The Claude Ambassadors leading the Builder Club at Vanderbilt."
       >
         <ul className="mx-auto grid max-w-[760px] gap-6 sm:grid-cols-2">

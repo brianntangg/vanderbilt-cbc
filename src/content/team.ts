@@ -13,14 +13,14 @@ export const team: TeamMember[] = [
   {
     name: "Brian Tang",
     role: "Ambassador",
-    // TODO: bio
+    bio: "Brian is a Computer Science major in Vanderbilt's Class of 2027 who helped launch the Claude Builder Club and loves building with AI. He most recently interned at Microsoft and is back for a second year to help students build with Claude.",
     photo: "/team/brian-tang.jpg",
     linkedin: "https://www.linkedin.com/in/brian-tang05/",
   },
   {
     name: "Sophie Lin",
     role: "Ambassador",
-    // TODO: bio
+    bio: "Sophie is a Computer Science major in Vanderbilt's Class of 2029 focused on AI, machine learning, and full-stack development. She most recently interned at the Federal Reserve Bank of Atlanta.",
     photo: "/team/sophie-lin.jpg",
     linkedin: "https://www.linkedin.com/in/sophie-lin-csds/",
   },
@@ -30,19 +30,19 @@ export const pastAmbassadors: TeamMember[] = [
   {
     name: "Vince Lin",
     role: "Previous Ambassador",
-    // TODO: photo: "/team/vince-lin.jpg",
+    photo: "/team/vince-lin.jpg",
     linkedin: "https://www.linkedin.com/in/vince-lin-3676b9238/",
   },
   {
     name: "Aribah Mahmud",
     role: "Previous Ambassador",
-    // TODO: photo: "/team/aribah-mahmud.jpg",
+    photo: "/team/aribah-mahmud.jpg",
     linkedin: "https://www.linkedin.com/in/aribah-mahmud/",
   },
   {
     name: "Sanjana Srikanth",
     role: "Previous Ambassador",
-    // TODO: photo: "/team/sanjana-srikanth.jpg",
+    photo: "/team/sanjana-srikanth.jpg",
     linkedin: "https://www.linkedin.com/in/sanjanasrikanth/",
   },
 ];
