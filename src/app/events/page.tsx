@@ -24,7 +24,7 @@ export default function EventsPage() {
         intro="Everything is open to all Vanderbilt students. No experience needed."
       >
         <h2 className="mb-6 font-display text-[28px] font-medium">Calendar</h2>
-        <EventCalendar events={events} />
+        <EventCalendar events={upcoming} />
 
         <h2 className="mt-14 mb-6 font-display text-[28px] font-medium">Upcoming</h2>
         {upcoming.length > 0 ? (
@@ -43,7 +43,7 @@ export default function EventsPage() {
           <h2 className="mb-6 font-display text-[28px] font-medium">Past</h2>
           <EventGrid>
             {past.map((event) => (
-              <EventCard key={event.id} event={event} />
+              <EventCard key={event.id} event={event} past />
             ))}
           </EventGrid>
         </Section>

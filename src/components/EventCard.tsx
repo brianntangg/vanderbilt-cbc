@@ -12,8 +12,8 @@ const typeLabels: Record<EventType, string> = {
   social: "Social",
 };
 
-export function EventCard({ event }: { event: ClubEvent }) {
-  const when = isTbd(event) ? (event.term ?? "Date TBA") : formatDate(event.date, { weekday: true });
+export function EventCard({ event, past = false }: { event: ClubEvent; past?: boolean }) {
+  const when = isTbd(event) ? (event.term ?? "Date TBA") : formatDate(event.date, { weekday: true, year: past });
   const details = [event.time, event.location].filter(Boolean);
 
   return (
@@ -28,7 +28,7 @@ export function EventCard({ event }: { event: ClubEvent }) {
       {details.length > 0 ? (
         <p className="mt-1 text-sm text-muted">{details.join(" · ")}</p>
       ) : (
-        <p className="mt-1 text-sm text-subtle">Time and location TBA</p>
+        !past && <p className="mt-1 text-sm text-subtle">Time and location TBA</p>
       )}
       <p className="mt-3 text-muted">{event.description}</p>
       {event.recap && <p className="mt-3 text-muted">{event.recap}</p>}
