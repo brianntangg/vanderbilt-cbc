@@ -30,7 +30,7 @@ export default function TeamPage() {
 
       {pastAmbassadors.length > 0 && (
         <Section className="pt-0 sm:pt-0">
-          <h2 className="mb-8 text-center font-display text-[30px] font-medium tracking-[-0.015em] sm:text-[38px]">
+          <h2 className="mb-10 text-center font-display text-[30px] font-medium tracking-[-0.015em] sm:text-[38px]">
             Previous Ambassadors
           </h2>
           <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

@@ -12,8 +12,10 @@ type SectionProps = {
 
 export function Section({ id, eyebrow, title, intro, as = "h2", children, className = "" }: SectionProps) {
   const Heading = as;
+  // The page-opening section (h1) gets extra top room under the nav; every page uses the same values.
+  const padding = as === "h1" ? "pt-20 pb-16 sm:pt-24 sm:pb-20" : "py-16 sm:py-20";
   return (
-    <section id={id} className={`py-16 sm:py-20 ${className}`}>
+    <section id={id} className={`${padding} ${className}`}>
       <div className="mx-auto max-w-[1160px] px-6">
         {(eyebrow || title || intro) && (
           <header className="mb-10 max-w-[820px]">

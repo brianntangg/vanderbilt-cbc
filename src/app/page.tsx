@@ -27,7 +27,6 @@ export default function AboutPage() {
         eyebrow="Claude Builder Club · Vanderbilt"
         title="Build with Claude at Vanderbilt"
         intro={site.tagline + "."}
-        className="pt-20 sm:pt-28"
       >
         <div className="flex flex-wrap gap-3">
           <Button href={site.memberSignupUrl}>Join the club</Button>
@@ -37,14 +36,14 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      <Section eyebrow="Our mission" title="Help every student build something useful with AI">
-        <p className="max-w-[640px] text-lg text-muted">
-          We&apos;re a student community for anyone curious about building with Claude, whatever your major or
-          experience. We learn by making things together, then share what works.
-        </p>
-      </Section>
+      <Section
+        eyebrow="Our mission"
+        title="Help every student build something useful with AI"
+        intro="We're a student community for anyone curious about building with Claude, whatever your major or experience. We learn by making things together, then share what works."
+        className="pt-0 sm:pt-0"
+      />
 
-      <Section eyebrow="What we do" title="Four ways to get involved">
+      <Section eyebrow="What we do" title="Four ways to get involved" className="pt-0 sm:pt-0">
         <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {offerings.map((item) => (
             <Card as="li" key={item.title}>
@@ -56,7 +55,7 @@ export default function AboutPage() {
       </Section>
 
       {nextEvent && (
-        <Section eyebrow="Next event" title="Come build with us">
+        <Section eyebrow="Next event" title="Come build with us" className="pt-0 sm:pt-0">
           <div className="max-w-[640px]">
             <EventCard event={nextEvent} />
           </div>
@@ -68,7 +67,7 @@ export default function AboutPage() {
         </Section>
       )}
 
-      <Section eyebrow="Backed by Anthropic" title="Part of the Claude Campus Program">
+      <Section eyebrow="Backed by Anthropic" title="Part of the Claude Campus Program" className="pt-0 sm:pt-0">
         <div className="grid items-center gap-8 md:grid-cols-2">
           <p className="max-w-[560px] text-lg text-muted">
             We&apos;re one of the student clubs in Anthropic&apos;s Claude Campus Program, which supports students

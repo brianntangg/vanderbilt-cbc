@@ -22,7 +22,6 @@ export default function HackathonPage() {
         eyebrow={`Hackathon · Coming ${hackathon.term}`}
         title="A campus-wide hackathon for building with Claude"
         intro="Date, venue, and prizes are coming soon. Here's what to expect."
-        className="pt-20 sm:pt-24"
       >
         <ul className="grid gap-4 sm:grid-cols-2">
           {hackathon.whatToExpect.map((item) => (
@@ -48,7 +47,6 @@ export default function HackathonPage() {
         eyebrow={`Hackathon · ${hackathon.term}`}
         title="A campus-wide hackathon for building with Claude"
         intro={facts.join(" · ")}
-        className="pt-20 sm:pt-24"
       >
         <Button href={registrationUrl ?? site.memberSignupUrl}>
           {registrationUrl ? "Register" : "Get hackathon updates"}

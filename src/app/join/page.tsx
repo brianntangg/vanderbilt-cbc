@@ -34,7 +34,6 @@ export default function JoinPage() {
         eyebrow={`Join the board · ${site.board.term}`}
         title="Help run Vanderbilt's community for building with Claude"
         intro="We host monthly meetings, hands-on workshops, campus demos, and a spring hackathon. Board members shape all of it."
-        className="pt-20 sm:pt-24"
       >
         <div className="flex flex-wrap items-center gap-x-5 gap-y-4">
           {open && <Button href="#apply">Apply to the board</Button>}
