@@ -1,3 +1,4 @@
+import { EventCalendar } from "@/components/EventCalendar";
 import { EventCard } from "@/components/EventCard";
 import { Section } from "@/components/Section";
 import { events } from "@/content/events";
@@ -22,7 +23,10 @@ export default function EventsPage() {
         title="Meetings, workshops, and more"
         intro="Everything is open to all Vanderbilt students. No experience needed."
       >
-        <h2 className="mb-6 font-display text-[28px] font-medium">Upcoming</h2>
+        <h2 className="mb-6 font-display text-[28px] font-medium">Calendar</h2>
+        <EventCalendar events={events} />
+
+        <h2 className="mt-14 mb-6 font-display text-[28px] font-medium">Upcoming</h2>
         {upcoming.length > 0 ? (
           <EventGrid>
             {upcoming.map((event) => (

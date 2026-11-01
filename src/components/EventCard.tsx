@@ -17,7 +17,7 @@ export function EventCard({ event }: { event: ClubEvent }) {
   const details = [event.time, event.location].filter(Boolean);
 
   return (
-    <Card as="article" className="flex flex-col">
+    <Card as="article" id={event.id} className="flex scroll-mt-24 flex-col">
       <div className="flex flex-wrap items-center gap-3">
         <Pill>{typeLabels[event.type]}</Pill>
         <p className="font-mono text-[13px] text-muted">

@@ -19,29 +19,26 @@ export type ClubEvent = {
 
 export const events: ClubEvent[] = [
   {
-    id: "fall-2026-meeting",
+    id: "2026-11-12-meeting",
     title: "CBC Meeting",
     type: "meeting",
-    date: "TBD",
-    term: "Fall 2026",
+    date: "2026-11-12",
     description:
       "Our monthly club meeting: what members are building, club updates, and a short Claude demo.",
   },
   {
-    id: "fall-2026-claude-code-skills",
-    title: "Claude Code & Skills",
+    id: "2026-11-17-claude-code-skills",
+    title: "Workshop: Claude Code & Skills",
     type: "workshop",
-    date: "TBD",
-    term: "Fall 2026",
+    date: "2026-11-17",
     description:
       "A hands-on workshop on Claude Code and Skills. Bring a laptop and leave with a working setup.",
   },
   {
-    id: "fall-2026-workshop",
-    title: "Workshop: Topic TBA",
+    id: "2026-12-02-workshop",
+    title: "CBC Workshop",
     type: "workshop",
-    date: "TBD",
-    term: "Fall 2026",
+    date: "2026-12-02",
     description: "Our last workshop of the semester. Topic coming soon.",
   },
   {
