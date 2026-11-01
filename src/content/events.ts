@@ -100,7 +100,7 @@ export const events: ClubEvent[] = [
     description:
       "The second edition of our Claude-first hackathon, sponsored by Anthropic and open to students of all backgrounds, with $1,500 in Anthropic API credits as prizes.",
     recap:
-      "Winners: Elara (1st), EntryPoint (2nd), StudySync (3rd), and Muse (WildCard Prize, sponsored by Procurement Labs). Thanks to Dr. Jesse Spencer-Smith of the College of Connected Computing for leading a workshop and judging.",
+      "Winners: Elara (1st), EntryPoint (2nd), StudySync (3rd), and Muse (WildCard Prize, sponsored by Procurement Labs).",
   },
   {
     id: "2026-04-02-hackathon-info-session",
