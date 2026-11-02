@@ -19,3 +19,9 @@ export type Project = SubmissionInput & {
 
 /** What the public site may see: never the submitter's email or review status. */
 export type PublicProject = Omit<Project, "email" | "status">;
+
+/** Explicit field picks, so a field added to Project later is private until someone chooses to publish it. */
+export function toPublicProject(project: Project): PublicProject {
+  const { id, title, url, type, description, name, createdAt, approvedAt } = project;
+  return { id, title, url, type, description, name, createdAt, approvedAt };
+}
