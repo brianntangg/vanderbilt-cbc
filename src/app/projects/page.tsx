@@ -11,8 +11,8 @@ export const metadata = pageMetadata({
   path: "/projects",
 });
 
-// Read from storage on each request so a newly approved project shows up right away.
-export const dynamic = "force-dynamic";
+// Cached for an hour to stay inside Airtable's free API allowance. Approving a project refreshes it at once.
+export const revalidate = 3600;
 
 async function loadProjects(): Promise<PublicProject[]> {
   try {

@@ -25,15 +25,16 @@ function setup(mailer?: Mailer) {
   const store = createMemoryStore();
   const { create, remove } = store;
   store.create = async (project) => {
-    created.push(project.id);
-    await create(project);
+    const made = await create(project);
+    created.push(made.id);
+    return made;
   };
   store.remove = async (id) => {
     removed.push(id);
     await remove(id);
   };
   const fake: Mailer = mailer ?? (async (mail) => void sent.push(mail));
-  const ctx = { store, mailer: fake, secret, baseUrl, ip: "1.2.3.4", now };
+  const ctx = { store, mailer: fake, secret, baseUrl, now };
   return { sent, created, removed, store, ctx };
 }
 
@@ -80,10 +81,12 @@ describe("handleSubmission", () => {
     expect(created).toHaveLength(0);
   });
 
-  it("sixth submission from one ip returns 429", async () => {
-    const { ctx } = setup();
-    for (let i = 0; i < 5; i++) expect((await handleSubmission(body, ctx)).status).toBe(200);
-    expect((await handleSubmission(body, ctx)).status).toBe(429);
+  it("fourth pending submission from one email returns 429, but another email is fine", async () => {
+    const { ctx, sent } = setup();
+    for (let i = 0; i < 3; i++) expect((await handleSubmission(body, ctx)).status).toBe(200);
+    expect((await handleSubmission({ ...body, email: "SAM@vanderbilt.edu" }, ctx)).status).toBe(429);
+    expect(sent).toHaveLength(3);
+    expect((await handleSubmission({ ...body, email: "kim@vanderbilt.edu" }, ctx)).status).toBe(200);
   });
 
   it("mailer failure returns 502 and leaves no stored project", async () => {

@@ -2,7 +2,6 @@ import { buildReviewEmail } from "./email";
 import type { Mailer } from "./mailer";
 import type { ProjectStore } from "./store";
 import { signToken } from "./token";
-import type { Project } from "./types";
 import { validateSubmission } from "./validation";
 
 export type SubmitContext = {
@@ -10,7 +9,6 @@ export type SubmitContext = {
   mailer: Mailer;
   secret: string;
   baseUrl: string;
-  ip: string;
   now: number;
 };
 
@@ -19,8 +17,8 @@ export type SubmitResult = {
   body: { ok: boolean; errors?: Record<string, string>; message?: string };
 };
 
-const RATE_LIMIT = 5;
-const RATE_WINDOW_SECONDS = 60 * 60;
+/** Unreviewed submissions one address may have waiting. Stops a single person flooding the board's inbox. */
+const MAX_PENDING_PER_EMAIL = 3;
 
 export async function handleSubmission(body: unknown, ctx: SubmitContext): Promise<SubmitResult> {
   // Bots fill the hidden "website" field. Pretend it worked so they don't adapt.
@@ -28,15 +26,14 @@ export async function handleSubmission(body: unknown, ctx: SubmitContext): Promi
     return { status: 200, body: { ok: true } };
   }
 
-  if (!(await ctx.store.hit(`submit:${ctx.ip}`, RATE_LIMIT, RATE_WINDOW_SECONDS))) {
-    return { status: 429, body: { ok: false, message: "Too many submissions. Please try again later." } };
-  }
-
   const result = validateSubmission(body);
   if (!result.ok) return { status: 400, body: { ok: false, errors: result.errors } };
 
-  const project: Project = { ...result.value, id: crypto.randomUUID(), status: "pending", createdAt: ctx.now };
-  await ctx.store.create(project);
+  if ((await ctx.store.countPendingByEmail(result.value.email)) >= MAX_PENDING_PER_EMAIL) {
+    return { status: 429, body: { ok: false, message: "You already have projects waiting for review. Please wait for a decision." } };
+  }
+
+  const project = await ctx.store.create({ ...result.value, status: "pending", createdAt: ctx.now });
 
   try {
     const reviewUrl = `${ctx.baseUrl}/projects/review/${signToken(project.id, ctx.secret, ctx.now)}`;

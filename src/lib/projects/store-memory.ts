@@ -1,13 +1,14 @@
 import type { ProjectStore } from "./store";
 import { toPublicProject, type Project } from "./types";
 
-export function createMemoryStore({ now = Date.now }: { now?: () => number } = {}): ProjectStore {
+export function createMemoryStore(): ProjectStore {
   const projects = new Map<string, Project>();
-  const hits = new Map<string, { count: number; resetAt: number }>();
 
   return {
-    async create(project) {
-      projects.set(project.id, { ...project });
+    async create(input) {
+      const project: Project = { ...input, id: crypto.randomUUID() };
+      projects.set(project.id, project);
+      return { ...project };
     },
     async get(id) {
       const project = projects.get(id);
@@ -29,14 +30,9 @@ export function createMemoryStore({ now = Date.now }: { now?: () => number } = {
         .sort((a, b) => (b.approvedAt ?? 0) - (a.approvedAt ?? 0))
         .map(toPublicProject);
     },
-    async hit(key, limit, windowSeconds) {
-      const entry = hits.get(key);
-      if (!entry || now() >= entry.resetAt) {
-        hits.set(key, { count: 1, resetAt: now() + windowSeconds * 1000 });
-        return limit >= 1;
-      }
-      entry.count += 1;
-      return entry.count <= limit;
+    async countPendingByEmail(email) {
+      const wanted = email.toLowerCase();
+      return [...projects.values()].filter((p) => p.status === "pending" && p.email.toLowerCase() === wanted).length;
     },
   };
 }
