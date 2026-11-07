@@ -3,6 +3,7 @@ import type { ProjectStore } from "./store";
 import { toPublicProject, type Project } from "./types";
 
 const projectKey = (id: string) => `project:${id}`;
+const decidedKey = (id: string) => `project:${id}:decided`;
 const APPROVED = "projects:approved";
 
 /** Thin mapping of ProjectStore onto Redis. Needs real credentials to exercise, so it has no automated test. */
@@ -22,9 +23,16 @@ export function createUpstashStore(redis: Redis): ProjectStore {
     async transition(id, to, now) {
       const project = await read(id);
       if (!project || project.status !== "pending") return false;
-      const next: Project = { ...project, status: to, ...(to === "approved" ? { approvedAt: now } : {}) };
-      await redis.set(projectKey(id), next);
-      if (to === "approved") await redis.zadd(APPROVED, { score: now, member: id });
+      // SET NX is the atomic claim: of two simultaneous decisions, exactly one gets "OK".
+      if ((await redis.set(decidedKey(id), to, { nx: true })) === null) return false;
+      try {
+        const next: Project = { ...project, status: to, ...(to === "approved" ? { approvedAt: now } : {}) };
+        await redis.set(projectKey(id), next);
+        if (to === "approved") await redis.zadd(APPROVED, { score: now, member: id });
+      } catch (error) {
+        await redis.del(decidedKey(id));
+        throw error;
+      }
       return true;
     },
     async listApproved() {

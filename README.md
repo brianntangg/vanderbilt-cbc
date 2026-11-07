@@ -63,6 +63,8 @@ The **Projects** tab (`/projects`) lets Vanderbilt students submit a link. The b
 
 **Locally:** `npm run dev` works with no setup. Emails are printed in the terminal instead of sent, and projects are kept in memory (lost on restart).
 
+**Spam limits:** each IP can submit 5 times an hour. This relies on Vercel's proxy setting the client IP header, so it holds on Vercel but not behind a different host.
+
 **Remove a project:** in the Upstash console, delete the key `project:<id>` and remove `<id>` from the sorted set `projects:approved`.
 
 **Run the tests:** `npm test`.
