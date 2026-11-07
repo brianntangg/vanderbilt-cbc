@@ -51,6 +51,22 @@ All editable content lives in `src/content/`. You shouldn't need to touch compon
 
 **Switch to a custom domain**: change `url` in `src/content/site.ts`, then add the domain in Vercel (see below).
 
+## Student projects
+
+The **Projects** tab (`/projects`) lets Vanderbilt students submit a link. The board gets an email at claudeatvanderbilt@gmail.com; its button opens a review page where one click on **Approve and publish** puts the project on the site. Reject hides it. Review links work once and expire after 14 days. Only `@vanderbilt.edu` emails are accepted.
+
+**One-time setup (Vercel → Project → Settings → Environment Variables):**
+1. Add a Redis database from Vercel → Storage → Marketplace → Upstash. This sets `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` for you.
+2. In the club Gmail account, turn on 2-step verification, then create an app password (Google Account → Security → App passwords). Add it as `GMAIL_APP_PASSWORD`.
+3. Add `PROJECTS_TOKEN_SECRET`: any long random string (e.g. run `openssl rand -base64 32`). It signs the review links. Changing it invalidates links already emailed.
+4. Redeploy, then submit a test project from the live site, approve it from the email, and confirm it appears on `/projects`. If it doesn't, check Vercel → Logs: a storage problem shows an empty page rather than an error.
+
+**Locally:** `npm run dev` works with no setup. Emails are printed in the terminal instead of sent, and projects are kept in memory (lost on restart).
+
+**Remove a project:** in the Upstash console, delete the key `project:<id>` and remove `<id>` from the sorted set `projects:approved`.
+
+**Run the tests:** `npm test`.
+
 ## How dates work
 
 Pages are static but re-render hourly on Vercel, so events move to "Past" and the board banner disappears after the deadline without a redeploy.
@@ -58,7 +74,7 @@ Pages are static but re-render hourly on Vercel, so events move to "Past" and th
 ## Deploy and checks
 
 - Every push to `main` deploys to Vercel automatically. If the build fails, the previous version stays live.
-- GitHub Actions runs `npm run check` and `npm run build` on every push and pull request. A red X on a commit means something broke; click it to see which step.
+- GitHub Actions runs `npm run check`, `npm test`, and `npm run build` on every push and pull request. A red X on a commit means something broke; click it to see which step.
 - Dependabot opens weekly pull requests to update dependencies. Merge them when the checks pass.
 - Visitor stats are in Vercel → Project → Analytics.
 - Custom domain: Vercel → Project → Settings → Domains.
