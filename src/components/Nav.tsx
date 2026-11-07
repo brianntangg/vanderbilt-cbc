@@ -12,6 +12,7 @@ const links = [
   { href: "/events", label: "Events" },
   { href: "/hackathon", label: "Hackathon" },
   { href: "/slides", label: "Slides" },
+  { href: "/projects", label: "Projects" },
   { href: "/links", label: "Links" },
 ];
 
