@@ -43,7 +43,7 @@ describe("review", () => {
   });
 
   it("approved project appears in store.listApproved without the email", async () => {
-    const { id, store, ctx, token } = await setup();
+    const { store, ctx, token } = await setup();
     await decideReview(token, "approve", ctx);
     const [listed] = await store.listApproved();
     expect(listed.title).toBe("Study buddy");
@@ -51,7 +51,7 @@ describe("review", () => {
   });
 
   it("reject then approve returns already-handled and project stays unlisted", async () => {
-    const { id, store, ctx, token } = await setup();
+    const { store, ctx, token } = await setup();
     expect(await decideReview(token, "reject", ctx)).toBe("rejected");
     expect(await decideReview(token, "approve", ctx)).toBe("already-handled");
     expect(await store.listApproved()).toEqual([]);

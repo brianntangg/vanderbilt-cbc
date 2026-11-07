@@ -56,16 +56,18 @@ All editable content lives in `src/content/`. You shouldn't need to touch compon
 The **Projects** tab (`/projects`) lets Vanderbilt students submit a link. The board gets an email at claudeatvanderbilt@gmail.com; its button opens a review page where one click on **Approve and publish** puts the project on the site. Reject hides it. Review links work once and expire after 14 days. Only `@vanderbilt.edu` emails are accepted.
 
 **One-time setup (Vercel → Project → Settings → Environment Variables):**
-1. Add a Redis database from Vercel → Storage → Marketplace → Upstash. This sets `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` for you.
+1. Storage is the Airtable base "CBC Website" (table `Projects`, in the club Airtable account). Create a personal access token at airtable.com/create/tokens with scopes `data.records:read` and `data.records:write`, and access to that base only. Add it as `AIRTABLE_TOKEN`, and add the base id (the `app...` part of the base's URL) as `AIRTABLE_BASE_ID`.
 2. In the club Gmail account, turn on 2-step verification, then create an app password (Google Account → Security → App passwords). Add it as `GMAIL_APP_PASSWORD`.
 3. Add `PROJECTS_TOKEN_SECRET`: any long random string (e.g. run `openssl rand -base64 32`). It signs the review links. Changing it invalidates links already emailed.
 4. Redeploy, then submit a test project from the live site, approve it from the email, and confirm it appears on `/projects`. If it doesn't, check Vercel → Logs: a storage problem shows an empty page rather than an error.
 
 **Locally:** `npm run dev` works with no setup. Emails are printed in the terminal instead of sent, and projects are kept in memory (lost on restart).
 
-**Spam limits:** each IP can submit 5 times an hour. This relies on Vercel's proxy setting the client IP header, so it holds on Vercel but not behind a different host.
+**Airtable limits:** the free plan allows 1,000 API calls a month and 1,000 records per base. The public list is cached for an hour (and refreshed the moment a project is approved) so page views don't use up the calls.
 
-**Remove a project:** in the Upstash console, delete the key `project:<id>` and remove `<id>` from the sorted set `projects:approved`.
+**Spam limit:** one email address can have at most 3 projects waiting for review. Approving or rejecting frees a slot.
+
+**Remove a project:** in the Airtable Projects table, set its Status to Rejected or delete the row. The site updates within an hour.
 
 **Run the tests:** `npm test`.
 
